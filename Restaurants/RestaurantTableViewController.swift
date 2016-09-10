@@ -11,6 +11,7 @@ import UIKit
 class RestaurantTableViewController: UITableViewController {
     
     var model = RestaurantModel()
+    typealias CompletionHandler = (success:Bool, response: [Restaurant]) ->()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +37,7 @@ class RestaurantTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return model.restaurantsMocks().count
+        return model.restaurants.count
     }
 
     
@@ -44,7 +45,7 @@ class RestaurantTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("restaurantCell", forIndexPath: indexPath) as! ItemTableViewCell
 
         // Configure the cell...
-        let restaurant:Restaurant = model.restaurantsMocks()[indexPath.row]
+        let restaurant:Restaurant = model.restaurants[indexPath.row]
         cell.namelabel.text = restaurant.name
         cell.detailsLabel.text = restaurant.details
         cell.iconImageView.image = UIImage(named: restaurant.image)
@@ -88,7 +89,7 @@ class RestaurantTableViewController: UITableViewController {
     */
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let restaurant = model.restaurantsMocks()[indexPath.row]
+        let restaurant = model.restaurants[indexPath.row]
         performSegueWithIdentifier("detail", sender: restaurant)
     }
 
@@ -103,9 +104,13 @@ class RestaurantTableViewController: UITableViewController {
     }
 
     
-    func getRestaurants() -> [Restaurant] {
-        let restaurants:[Restaurant] = self.model.restaurantsMocks()
-        
-        return restaurants
+    func getRestaurants() {
+        model.getRestaurantsFromServer { (success, response) in
+            if(success) {
+                self.tableView.reloadData()
+            } else {
+                
+            }
+        }
     }
 }

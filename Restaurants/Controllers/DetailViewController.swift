@@ -18,18 +18,18 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var rankingLabel: UILabel!
     @IBOutlet weak var restaurantImage: UIImageView!
     
-    var restaurant:Restaurant = Restaurant(name: "Desayunos", details: "asd asd asd asd as dadssad aa dsa asd asda sd aasdsada asdasdas asd asda asdasd asd asd asd aasd as asd sa", address: "CL 12 33 N 12 12", latitude: 6.654643, longitude: -75.564533, category: "Tipico", image: "breakfast-restaurant")
+    var restaurant:Restaurant?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.nameLabel.text = self.restaurant.name
-        self.detailTextView.text = self.restaurant.details
-        self.addressLabel.text = self.restaurant.address
-        self.telephoneLabel.text = self.restaurant.telephone
-        self.categoryLabel.text = self.restaurant.category
-        self.rankingLabel.text = String(self.restaurant.ranking)
-        self.restaurantImage.image = UIImage(named: self.restaurant.image)
+        self.nameLabel.text = self.restaurant!.name
+        self.detailTextView.text = self.restaurant!.details
+        self.addressLabel.text = self.restaurant!.address
+        self.telephoneLabel.text = self.restaurant!.telephone
+        self.categoryLabel.text = self.restaurant!.category
+        self.rankingLabel.text = String(self.restaurant!.ranking)
+        self.restaurantImage.image = UIImage(named: self.restaurant!.image)
     }
 
     override func didReceiveMemoryWarning() {

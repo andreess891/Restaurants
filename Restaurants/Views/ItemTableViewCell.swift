@@ -9,6 +9,10 @@
 import UIKit
 
 class ItemTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var namelabel: UILabel!
+    @IBOutlet weak var detailsLabel: UILabel!
+    @IBOutlet weak var iconImageView: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()

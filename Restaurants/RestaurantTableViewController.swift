@@ -9,10 +9,12 @@
 import UIKit
 
 class RestaurantTableViewController: UITableViewController {
-
+    
+    var model = RestaurantModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.getRestaurants()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -29,23 +31,26 @@ class RestaurantTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return model.restaurantsMocks().count
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("restaurantCell", forIndexPath: indexPath) as! ItemTableViewCell
 
         // Configure the cell...
-
+        let restaurant:Restaurant = model.restaurantsMocks()[indexPath.row]
+        cell.namelabel.text = restaurant.name
+        cell.detailsLabel.text = restaurant.details
+        cell.iconImageView.image = UIImage(named: restaurant.image)
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -81,15 +86,26 @@ class RestaurantTableViewController: UITableViewController {
         return true
     }
     */
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let restaurant = model.restaurantsMocks()[indexPath.row]
+        performSegueWithIdentifier("detail", sender: restaurant)
+    }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let destination = segue.destinationViewController as! DetailViewController
+        destination.restaurant = (sender as! Restaurant)
+        
     }
-    */
 
+    
+    func getRestaurants() -> [Restaurant] {
+        let restaurants:[Restaurant] = self.model.restaurantsMocks()
+        
+        return restaurants
+    }
 }

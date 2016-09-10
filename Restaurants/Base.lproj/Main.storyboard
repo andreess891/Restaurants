@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SyO-qj-g9P">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="KvL-3S-FMw">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -223,7 +223,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1113" y="1045"/>
+            <point key="canvasLocation" x="1925" y="1045"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="IB7-zP-yeh">
@@ -253,8 +253,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="78" id="MCV-8l-uzY" customClass="ItemTableViewCell" customModule="Restaurants" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="320" height="78"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="restaurantCell" rowHeight="78" id="MCV-8l-uzY" customClass="ItemTableViewCell" customModule="Restaurants" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="320" height="78"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MCV-8l-uzY" id="uta-OO-bYP">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="77.5"/>
@@ -288,6 +288,11 @@
                                         <constraint firstItem="oJ8-NI-GLf" firstAttribute="top" secondItem="uta-OO-bYP" secondAttribute="topMargin" id="wZW-Q2-xhu"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="detailsLabel" destination="p5D-1E-bUZ" id="5J3-cn-bAf"/>
+                                    <outlet property="iconImageView" destination="oJ8-NI-GLf" id="dr2-ts-fmO"/>
+                                    <outlet property="namelabel" destination="9JN-bk-JGP" id="GTy-fL-6ws"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -295,11 +300,34 @@
                             <outlet property="delegate" destination="SyO-qj-g9P" id="OcK-2n-Zyi"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="eag-Hk-Ox8"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="detail" id="WAb-LS-QHP"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r4e-aL-WcX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="712" y="1045"/>
+            <point key="canvasLocation" x="1524" y="1045"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="eDf-TW-ljx">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KvL-3S-FMw" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iDf-N2-nT6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="SyO-qj-g9P" kind="relationship" relationship="rootViewController" id="eer-3f-htl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CcK-ad-fTw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1082" y="1045"/>
         </scene>
     </scenes>
     <resources>
